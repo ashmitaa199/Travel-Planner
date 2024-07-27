@@ -3,7 +3,9 @@ import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import ForumIcon from '@mui/icons-material/Forum';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+import Sidenav from './Sidenav';
 
 const Header = ({ backButton }) => {
   const navigate = useNavigate(); // Use useNavigate hook for navigation
@@ -13,15 +15,28 @@ const Header = ({ backButton }) => {
   };
 
   return (
-    <div className='flex justify-between items-center border-b-2 border-gray-200'>
+    <div className='flex justify-between items-center h-14 border-b-2 border-gray-200'>
       {backButton ? (
         <IconButton onClick={handleBack}>
           <ArrowBackIosNewIcon fontSize='large' className='header__icon' />
         </IconButton>
       ) : (
+        <div className="flex">
+          <div className=''>
+          <Sidenav/>
+          </div>
+
+        
         <IconButton>
+         
           <PersonRoundedIcon fontSize='large' />
+         
         </IconButton>
+        
+       
+        </div>
+        
+
       )}
 
       <Link to='/'>

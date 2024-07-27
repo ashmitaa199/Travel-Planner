@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Header from './Header';
 import SwipeButtons from './SwipeButtons';
@@ -16,6 +17,7 @@ function App() {
           <>
              <Header backButton="/chat"/>
              <ChatScreen/>
+             
             
               {/* <Chats/> */}
           </>

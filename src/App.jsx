@@ -7,6 +7,10 @@ import SwipeButtons from './SwipeButtons';
 import TinderCards from './TinderCards';
 import Chats from './Chats';
 import ChatScreen from './ChatScreen';
+import Sidenav from './Sidenav'; // Your sidebar component
+import Login from './Login'; // Your Login component
+import Allmail from './Allmail'; // Your AllMail component
+import Signup from './Signup'; // Your Trash component
 
 function App() {
   return (
@@ -39,6 +43,12 @@ function App() {
             <SwipeButtons />
           </>
         } />
+        <Route path="/login" element={<Login />} />
+        <Route path="/allmail" element={<Allmail/>}/>
+        <Route path="/signup" element={<Signup />} />
+        
+        
+      
       </Routes>
     </Router>
   );

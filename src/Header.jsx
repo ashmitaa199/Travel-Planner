@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import ForumIcon from '@mui/icons-material/Forum';
 import IconButton from '@mui/material/IconButton';
@@ -6,8 +6,27 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
 import Sidenav from './Sidenav';
+import { auth } from "../firebase";
+
 
 const Header = ({ backButton }) => {
+
+  const [userName,setUserName] = useState("");
+
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if(user){
+        setUserName(user.displayName)
+      }
+      else{
+        setUserName("")
+      }
+      console.log(user);
+    });
+
+  },[])
+
   const navigate = useNavigate(); // Use useNavigate hook for navigation
 
   const handleBack = () => {
@@ -29,7 +48,7 @@ const Header = ({ backButton }) => {
         
         <IconButton>
          
-          <PersonRoundedIcon fontSize='large' />
+          <PersonRoundedIcon fontSize='large' /><span className='text-xs'>{userName}</span>
          
         </IconButton>
         

@@ -15,15 +15,16 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { Link } from 'react-router-dom'; // Import Link
+import LoginIcon from '@mui/icons-material/Login';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from 'react-router-dom';
 
-const drawerWidth = 200;
+const drawerWidth = 180;
 const appBarWidth = 65;
 
 const openedMixin = (theme) => ({
-  width: 130,
+  width: drawerWidth,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -67,7 +68,6 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  borderBottom: '2px solid rgba(0, 0, 0, 0.12)',
   ...(open && {
     marginLeft: drawerWidth,
     width: 0,
@@ -86,11 +86,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     boxSizing: 'border-box',
     ...(open && {
       ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...openedMixin(theme),
+        border: 'none', // Remove border
+      },
     }),
     ...(!open && {
       ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...closedMixin(theme),
+        border: 'none', // Remove border
+      },
     }),
   }),
 );
@@ -138,7 +144,7 @@ export default function Sidenav() {
           <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
               component={Link}
-              to="/allmail"
+              to="/logout" 
               sx={{
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',
@@ -153,9 +159,9 @@ export default function Sidenav() {
                   justifyContent: 'center',
                 }}
               >
-                <InboxIcon />
+                <LogoutIcon/>
               </ListItemIcon>
-              <ListItemText primary="All mail" sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding sx={{ display: 'block' }}>
@@ -176,7 +182,7 @@ export default function Sidenav() {
                   justifyContent: 'center',
                 }}
               >
-                <MailIcon />
+                <LoginIcon />
               </ListItemIcon>
               <ListItemText primary="Signup" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
@@ -202,7 +208,7 @@ export default function Sidenav() {
                   justifyContent: 'center',
                 }}
               >
-                <MailIcon /> {/* Example icon */}
+                <PersonAddIcon/>
               </ListItemIcon>
               <ListItemText primary="Login" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>

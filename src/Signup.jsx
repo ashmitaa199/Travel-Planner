@@ -1,11 +1,13 @@
-import {Card, CardBody, CardHeader,Input,Col,Row, Container,Form, FormGroup,
-   Label,
-   Button, } from "reactstrap";
+import {Card, CardBody, CardHeader,Input,Col,Row, Container,Form, FormGroup,Label,Button, } from "reactstrap";
 import React, { useState,useEffect } from 'react';
+import {Link,useNavigate} from "react-router-dom";
+import { createUserWithEmailAndPassword , updateProfile } from "firebase/auth";
+import { auth } from '../firebase';
 
 const Signup = () => {
-
   
+  const navigate =useNavigate();
+
 
   //two way data binding-user changes reflect in these fields and changes in these fields will reflect on user data
 
@@ -16,19 +18,14 @@ const Signup = () => {
     password:'',
     about:'',
 
-
-
   })
-
 
   //we use usestate make changes and to relect or print the data we use use effect
-  const [error,setError]=useState({
-    eroors:{},
-    isError:false
+  const [error,setError]=useState("");
 
-  })
 //use effect
 //to print the data
+
   useEffect(()=>{
     console.log(data);
 
@@ -38,7 +35,8 @@ const Signup = () => {
 
   const handleChange=(event,property)=>{
 
-    setData({...data,[property]:event.target.value})//here we use callback ,callback run after the setData,b/c setData is asynchronous function
+    setData({...data,[property]:event.target.value})//here we use callback ,
+    //callback run after the setData,b/c setData is asynchronous function
     //getting all data of data object
     // console.log(event.target.value)  //value we get when enter name
 
@@ -55,7 +53,11 @@ const resetData=()=>{
     about:'',
 
   })
+   setError("");
 }
+
+//submitButtonDisabled
+const [submitButtonDisabled , setSubmitButtonDisabled]=useState(false);
 
 //subbitForm
 
@@ -67,6 +69,35 @@ const submitForm=(event)=>{
 
 }
 
+//handleSubmission
+const handleSubmission=()=>{
+  if(!data.name || !data.email || !data.password){
+    setError("*Fill all fields");
+    return;
+  }
+  setSubmitButtonDisabled(true);
+  setError("");
+  //fireabse api calling
+  createUserWithEmailAndPassword(auth, data.email,data.password)
+  .then(async(res) => {
+    setSubmitButtonDisabled(false);
+    const user=res.user;
+    await updateProfile(user, {
+      displayName:data.name,
+    });
+///redirecting to home page
+navigate("/");
+
+    // console.log(user);
+  })
+  .catch((err) => {
+  setSubmitButtonDisabled(false);
+  setError(err.message);
+ 
+});
+
+
+}
 
   return (
     <div>
@@ -88,9 +119,7 @@ const submitForm=(event)=>{
 
           {/* Name field */}
             <FormGroup>
-              <Label 
-              for="name">Enter name
-              </Label>
+              <Label for="name">Enter name </Label>
               <Input 
               id="name"
               type="text"
@@ -106,7 +135,6 @@ const submitForm=(event)=>{
 
           <FormGroup>
               <Label for="email">Enter your Email
-
               </Label>
               <Input 
               id="email" 
@@ -141,31 +169,40 @@ const submitForm=(event)=>{
                
             </FormGroup>
             <Container className="text-center">
-            <Button color="light" outline> Register </Button>
+            <Button 
+            color="light"
+             outline
+             onClick={handleSubmission}
+             disabled={submitButtonDisabled}
+             style={{
+              backgroundColor: submitButtonDisabled ? '#d3d3d3' : 'light', // Light gray when disabled
+              borderColor: submitButtonDisabled ? '#d3d3d3' : '',        // Light gray border when disabled
+              color: submitButtonDisabled ? '#a9a9a9' : '',               // Darker gray text when disabled
+              cursor: submitButtonDisabled ? 'not-allowed' : 'pointer'     // Change cursor style when disabled
+            }}
+            > Register 
+            </Button> {/*  HANDLEsUBMISSION */}
             <Button onClick={resetData}
-            color="secondary"
+             color="secondary"
              outline type="reset" 
              className="ms-2"> Reset </Button>
             </Container>
-
+ 
 
           </Form>
 
         </CardBody>
-        
+       
+      </Card>
 
+     </Col>
 
-        </Card>
-
-
-          </Col>
-        </Row>
-        
-        
-
-      </Container>
+  </Row>
+    <b className="font-bold text-sm text-red-600"> {error}</b>
+     
+</Container>
     </div>
   )
 }
 
-export default Signup
+export default Signup;

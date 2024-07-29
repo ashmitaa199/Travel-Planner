@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -9,10 +9,27 @@ import Chats from './Chats';
 import ChatScreen from './ChatScreen';
 import Sidenav from './Sidenav'; // Your sidebar component
 import Login from './Login'; // Your Login component
-import Allmail from './Allmail'; // Your AllMail component
+import Logout from './Logout'; // Your AllMail component
 import Signup from './Signup'; // Your Trash component
 
+import { auth } from "../firebase";
+
 function App() {
+
+  // const [userName,setUserName] = useState("");
+
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     if(user){
+  //       setUserName(user.displayName)
+  //     }
+  //     else{
+  //       setUserName("")
+  //     }
+  //     console.log(user);
+  //   });
+
+  // },[])
   return (
     <Router>
       <Routes>
@@ -44,7 +61,7 @@ function App() {
           </>
         } />
         <Route path="/login" element={<Login />} />
-        <Route path="/allmail" element={<Allmail/>}/>
+        <Route path="/logout" element={<Logout/>}/>
         <Route path="/signup" element={<Signup />} />
         
         

@@ -3,33 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Header from './Header';
-import SwipeButtons from './SwipeButtons';
-import TinderCards from './TinderCards';
+
 import Chats from './Chats';
 import ChatScreen from './ChatScreen';
 import Sidenav from './Sidenav'; // Your sidebar component
 import Login from './Login'; // Your Login component
 import Logout from './Logout'; // Your AllMail component
 import Signup from './Signup'; // Your Trash component
+import Home from './Home';
 
 import { auth } from "../firebase";
+import OnBoarding from './pages/OnBoarding';
 
 function App() {
-
-  // const [userName,setUserName] = useState("");
-
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((user) => {
-  //     if(user){
-  //       setUserName(user.displayName)
-  //     }
-  //     else{
-  //       setUserName("")
-  //     }
-  //     console.log(user);
-  //   });
-
-  // },[])
   return (
     <Router>
       <Routes>
@@ -55,14 +41,16 @@ function App() {
         
         <Route path="/" element={
           <>
-            <Header/>
+          <Home/>
+            {/* <Header/>
             <TinderCards />
-            <SwipeButtons />
+            <SwipeButtons /> */}
           </>
         } />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/signup" element={<Signup />} />
+        <Route path="/onboarding" element={<OnBoarding/>}/>
         
         
       

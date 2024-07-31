@@ -15,6 +15,10 @@ function TinderCards() {
 
    },[]);
 
+   //new
+   const [LastDirection,setLastDirection]=useState()
+   
+
   return (
     <div className=''>
    

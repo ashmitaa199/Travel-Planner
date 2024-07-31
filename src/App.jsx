@@ -24,6 +24,7 @@ function App() {
           <>
              <Header backButton="/chat"/>
              <ChatScreen/>
+             {/* chat diplay */}
              
             
               {/* <Chats/> */}
@@ -35,16 +36,13 @@ function App() {
           <>
              <Header backButton="/"/>
              <div><Chats/></div>
-              {/* <Chats/> */}
+             
           </>
         } />
         
         <Route path="/" element={
           <>
           <Home/>
-            {/* <Header/>
-            <TinderCards />
-            <SwipeButtons /> */}
           </>
         } />
         <Route path="/login" element={<Login />} />

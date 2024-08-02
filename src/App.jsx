@@ -14,16 +14,30 @@ import Home from './Home';
 
 import { auth } from "../firebase";
 import OnBoarding from './pages/OnBoarding';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <Router>
       <Routes>
 
+      <Route path="/" element={
+          
+          <Home/>
+          
+        } />
+
+<Route path="/dashboard" element={
+          
+          <Dashboard/>
+          
+        } />
+
       <Route path="/chat/:person" element={
           <>
              <Header backButton="/chat"/>
              <ChatScreen/>
+             {/* chat diplay */}
              
             
               {/* <Chats/> */}
@@ -33,20 +47,13 @@ function App() {
      
         <Route path="/chat" element={
           <>
-             <Header backButton="/"/>
+             <Header backButton="/dashboard"/>
              <div><Chats/></div>
-              {/* <Chats/> */}
+             
           </>
         } />
         
-        <Route path="/" element={
-          <>
-          <Home/>
-            {/* <Header/>
-            <TinderCards />
-            <SwipeButtons /> */}
-          </>
-        } />
+        
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/signup" element={<Signup />} />

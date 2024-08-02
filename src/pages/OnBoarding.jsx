@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Nav from '../components/Nav';
-import './onboarding.css';
+
 
 const OnBoarding = () => {
   // State to manage form values
@@ -10,9 +10,9 @@ const OnBoarding = () => {
     dob_Day: '',
     dob_Month: '',
     dob_Year: '',
-    gender_identity: '', // Updated state name for gender identity
+    gender_identity: 'man', // Updated state name for gender identity
     show_gender: false,
-    gender_interest: '',
+    gender_interest: 'woman',
     email:'',
     about: '',
     url: '',
@@ -45,7 +45,11 @@ const OnBoarding = () => {
 
   return (
     <>
-      <Nav />
+      <Nav 
+      setShowModal={() => {
+      }}
+      showModal={false}
+      />
       <div className="onboarding">
         <h2>CREATE ACCOUNT</h2>
 

@@ -51,6 +51,10 @@ const outOfFrame = (name) => {
   
    
 
+   //new
+   const [LastDirection,setLastDirection]=useState()
+   
+
   return (
     <div className=''>
    

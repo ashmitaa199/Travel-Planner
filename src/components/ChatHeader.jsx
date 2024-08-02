@@ -4,6 +4,10 @@ const ChatHeader = () => {
   return (
     <div className='chat-container-header '>
         <div className='profile '>
+
+    <div className='chat-container-header'>
+        <div className='profile'>
+
             <div className='img-container'>
                 <img src=''/>
 
@@ -13,6 +17,8 @@ const ChatHeader = () => {
         </div>
         <i className={'log-out-icon'}></i>
       
+    </div>
+    </div>
     </div>
   )
 }

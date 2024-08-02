@@ -1,8 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+
+/* Global styles */
+* {
   margin: 0;
+  box-sizing: border-box; /* Added for consistent box-sizing */
 }
 
 html, body {
@@ -10,16 +13,12 @@ html, body {
   padding: 0;
   text-align: center;
 }
+
 h2 {
   font-style: italic;
 }
 
-.card{
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
-/* auth modal */
-
+/* Auth modal */
 .auth-modal {
   position: absolute;
   left: 0;
@@ -50,25 +49,22 @@ h2 {
   font-size: 17px;
 }
 
-
-/* home */
-
+/* Home */
 .overlay {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  object-fit: contain;
   background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.65) 0%,
-          rgba(0, 0, 0, 0) 100%
-  ), url('https://img.freepik.com/free-photo/people-portrait-with-plane-flying-sky_23-2149520423.jpg?w=826&t=st=1722594463~exp=1722595063~hmac=6321967d6c987bfcd91c89c7e8dded5816babc8edada151277137ef6e63788f3')
+      to bottom,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0) 100%
+  ), url('https://img.freepik.com/free-photo/people-portrait-with-plane-flying-sky_23-2149520423.jpg?w=826&t=st=1722594463~exp=1722595063~hmac=6321967d6c987bfcd91c89c7e8dded5816babc8edada151277137ef6e63788f3');
+  background-size: cover; /* Ensure background image covers the container */
 }
 
 .home {
   margin-top: 30vh;
 }
-
 
 nav .nav-button {
   color: rgb(254, 48, 114);
@@ -85,10 +81,9 @@ nav .nav-button:disabled {
   color: rgb(189, 42, 90);
 }
 
-
-
+/* Primary button */
 .primary-button {
-  color: rgb(255,255,255);
+  color: rgb(255, 255, 255);
   text-transform: uppercase;
   font-size: 15px;
   background: linear-gradient(45deg, rgba(58, 101, 241, 0.671), rgb(16, 207, 163));
@@ -101,7 +96,7 @@ nav .nav-button:disabled {
   background: linear-gradient(260deg, rgb(31, 113, 201), rgb(24, 160, 201));
 }
 
-
+/* Secondary button */
 .secondary-button {
   color: rgb(121, 119, 119);
   background-color: rgb(255, 255, 255);
@@ -119,26 +114,23 @@ nav .nav-button:disabled {
   border: solid 2px rgb(48, 48, 48);
 }
 
-
-
-/* chat container */
+/* Chat container */
 .chat-container {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-  rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  width: 100%;
- 
+              rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  width: 100%; /* Removed duplicate width property */
   z-index: 1;
 }
 
 .chat-container-header {
-  background: linear-gradient(45deg, rgb(69, 209, 219), rgb(255, 89, 64));
-  height: 40px;
-
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(219,164,185,1) 0%, rgba(0,220,255,0.7401085434173669) 77%);
+  height: 50px;
   display: flex;
-
-  align-items: center;
 }
+
+/* Chat options */
 .chat-container .option {
   border: none;
   background-color: rgb(255, 255, 255);
@@ -147,16 +139,17 @@ nav .nav-button:disabled {
   margin: 2px;
   padding: 10px;
 }
+
 .chat-container .option:disabled {
   border-bottom: solid 4px rgb(187, 187, 187);
 }
 
 .chat-container .profile,
 .chat-container .log-out-icon {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: rgb(255, 255, 255);
 }
 
 .img-container {
@@ -171,43 +164,22 @@ nav .nav-button:disabled {
   width: 100%;
 }
 
-/*-------- Chat Display --------*/
-
-.chat-display
- {
-    padding: 20px;
-    height: 48vh;
-    overflow-y: auto;
+/* Chat display */
+.chat-display {
+  padding: 20px;
+  height: 60vh; /* Use consistent height */
+  overflow-y: auto;
 }
 
-/*-------- Chat Input --------*/
+/* Chat input */
 .chat-input {
   padding: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.auth-modal {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 360px;
-  height: 600px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  padding: 40px;
-}
-
-.auth-modal .close-icon {
-  float: right;
-}
-
-/* onboarding.css */
+/* Onboarding */
 .onboarding {
-   
   padding: 20px;
 }
 
@@ -220,8 +192,8 @@ nav .nav-button:disabled {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  width: 100%; /* Adjust to full width for better responsiveness */
-  max-width: 600px; /* Restrict maximum width */
+  width: 100%;
+  max-width: 600px;
   text-align: start;
 }
 
@@ -235,18 +207,18 @@ nav .nav-button:disabled {
 
 .onboarding form label {
   margin: 10px 0;
-  font-weight: bold; /* Added for better label visibility */
+  font-weight: bold;
 }
 
 .onboarding form .multiple-input-container {
   display: flex;
-  flex-direction: row; /* Align items in a row */
-  gap: 10px; /* Add gap between inputs */
-  margin-bottom: 10px; /* Space below the container */
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .onboarding form .multiple-input-container input {
-  width: 80px; /* Set width for the inputs to match gender inputs */
+  width: 80px;
 }
 
 .onboarding form .multiple-input-container label {
@@ -272,13 +244,13 @@ nav .nav-button:disabled {
 }
 
 .onboarding form input[type=checkbox] {
-  margin-right: 10px; /* Space between checkbox and label */
+  margin-right: 10px;
 }
 
 .onboarding form .checkbox-container {
   display: flex;
-  align-items: center; /* Vertically center the checkbox with the label */
-  margin-bottom: 20px; /* Space below the checkbox container */
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .onboarding form input[type=submit] {
@@ -306,16 +278,16 @@ nav .nav-button:disabled {
 
 /* Placeholder styling */
 .onboarding form input::placeholder {
-  color: rgba(0, 0, 0, 0.5); /* Light gray color for placeholders */
-  opacity: 1; /* Ensures placeholder text is not faded */
+  color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
 }
 
-/* swipe buttons */
-
-.swipeButtons .MuiIconButton-root{
+/* Swipe buttons */
+.swipeButtons .MuiIconButton-root {
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 10px 53px 0px rgb(51, 37, 84) !important;
 }
+
 .swipeButtons__ReplayIcon {
   padding: 3vw !important;
   color: coral !important;

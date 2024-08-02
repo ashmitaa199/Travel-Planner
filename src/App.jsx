@@ -1,18 +1,11 @@
 import React, { useEffect,useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 import Header from './Header';
+import Chat from './Chat';
 
-import Chats from './Chats';
-import ChatScreen from './ChatScreen';
 import Sidenav from './Sidenav'; // Your sidebar component
-import Login from './Login'; // Your Login component
-import Logout from './Logout'; // Your AllMail component
-import Signup from './Signup'; // Your Trash component
 import Home from './Home';
-
-import { auth } from "../firebase";
 import OnBoarding from './pages/OnBoarding';
 import Dashboard from './pages/Dashboard';
 
@@ -36,7 +29,8 @@ function App() {
       <Route path="/chat/:person" element={
           <>
              <Header backButton="/chat"/>
-             <ChatScreen/>
+            
+            
              {/* chat diplay */}
              
             
@@ -48,15 +42,25 @@ function App() {
         <Route path="/chat" element={
           <>
              <Header backButton="/dashboard"/>
-             <div><Chats/></div>
+             <Chat/>
+
+            
+            
              
           </>
         } />
         
-        
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={
+          <>
+          <Home/>
+            {/* <Header/>
+            <TinderCards />
+            <SwipeButtons /> */}
+          </>
+        } />
+        {/* <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout/>}/>
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} /> */}
         <Route path="/onboarding" element={<OnBoarding/>}/>
         
         

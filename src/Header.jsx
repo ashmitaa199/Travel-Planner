@@ -5,22 +5,15 @@ import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Link, useNavigate } from 'react-router-dom';
 import Sidenav from './Sidenav'; // Ensure this import is correct
-import { auth } from "../firebase";
+import Chat from './Chat';
+
 import icon from "./assets/icon.png"
 
 const Header = ({ backButton }) => {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUserName(user.displayName);
-      } else {
-        setUserName("");
-      }
-    });
 
-    return () => unsubscribe(); // Clean up the subscription
   }, []);
 
   const navigate = useNavigate();
@@ -30,6 +23,7 @@ const Header = ({ backButton }) => {
   };
 
   return (
+    <div>
     <div className='flex justify-between items-center h-14 border-b-2 border-gray-200 px-4'>
       {backButton ? (
         <IconButton onClick={handleBack}>
@@ -57,6 +51,9 @@ const Header = ({ backButton }) => {
           <ForumIcon fontSize='large' />
         </IconButton>
       </Link>
+    </div>
+   
+    
     </div>
   );
 };

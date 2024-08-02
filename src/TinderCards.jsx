@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+
 
 import TinderCard from "react-tinder-card";
 
@@ -51,8 +51,7 @@ const outOfFrame = (name) => {
   
    
 
-   //new
-   const [LastDirection,setLastDirection]=useState()
+
    
 
   return (

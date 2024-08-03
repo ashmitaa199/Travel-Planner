@@ -36,7 +36,7 @@ const Home = () => {
   
     <div className='Home '>
 
-      <button className='primary-button border' onClick={handleClick}>
+      <button className='primary-button border ' onClick={handleClick}>
         {authToken ? 'Signout':'Create Account'}
       </button>
 

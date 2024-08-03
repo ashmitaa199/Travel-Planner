@@ -4,12 +4,12 @@ import ChatInput from './ChatInput'
 
 const ChatDisplay = () => {
   return (
-    <>
+    <div className=''>
         <Chatt/>  
         {/* chat */}
         <ChatInput />
      
-    </>
+    </div>
   )
 }
 

@@ -9,7 +9,7 @@ import { IconButton } from '@mui/material';
 
 function SwipeButtons() {
   return (
-    <div className='swipeButtons fixed bottom-[7vh] flex w-full place-content-evenly'>
+    <div className='swipeButtons fixed bottom-[0.5vh] flex w-full place-content-evenly'>
       <IconButton  className="swipeButtons__ReplayIcon size-1 "><ReplayIcon fontSize="medium"/></IconButton>
       <IconButton className='swipeButtons__left size-1'><CloseIcon fontSize="medium"/></IconButton>
       <IconButton className='swipeButtons__star size-1'> <StarRateIcon fontSize="medium"/></IconButton>

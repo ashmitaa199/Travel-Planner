@@ -19,8 +19,11 @@ const Chat = () => {
         <button className='option '>Matches</button>
         <button className=' option '>Chat</button>
       </div>
+      <section className=''>
       <MatchesDisplay/> 
-     <ChatDisplay/>
+      <ChatDisplay/>
+      </section>
+      
     </div>
     
   )

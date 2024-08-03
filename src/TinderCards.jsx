@@ -45,17 +45,9 @@ const outOfFrame = (name) => {
 }
    const [genderedUsers, setGenderedUsers] = useState(null)
     
-   
   
-
-  
-   
-
-
-   
-
   return (
-    <div className=''>
+    <div className='-mt-4'>
    
       <div className='card-container flex justify-center mt-[5vh]  h-[500px]'>
 
@@ -68,7 +60,7 @@ const outOfFrame = (name) => {
          onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
             <div 
             style={{backgroundImage:'url(' + character.url + ')'}}
-            className='card bg-cover relative w-[600px] p-[20px] max-w-[75vw] h-[60vh] rounded-[20px]'>
+            className='card'>
                 <h3 className='absolute bottom-5 text-#000000'>{character.name}</h3>
 
             </div>

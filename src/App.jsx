@@ -43,19 +43,13 @@ function App() {
           <>
              <Header backButton="/dashboard"/>
              <Chat/>
-
-            
-            
-             
           </>
         } />
         
         <Route path="/" element={
           <>
           <Home/>
-            {/* <Header/>
-            <TinderCards />
-            <SwipeButtons /> */}
+            
           </>
         } />
         {/* <Route path="/login" element={<Login />} />

@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import Nav from '../components/Nav';
+import { useCookies } from 'react-cookie';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 
 const OnBoarding = () => {
+
+  
+  const [ cookies, setCookie, removeCookie] = useCookies(['user'])
   // State to manage form values
   const [formData, setFormData] = useState({
-    user_id:'',
+    user_id: cookies.UserId,
     first_name: '',
     dob_Day: '',
     dob_Month: '',
@@ -13,35 +19,52 @@ const OnBoarding = () => {
     gender_identity: 'man', // Updated state name for gender identity
     show_gender: false,
     gender_interest: 'woman',
-    email:'',
+    email: '',
     about: '',
     url: '',
     matches: []
   });
 
-  // Handle form field changes
-  const handleChange = (e) => {
-    console.log('e',e)
-        const value=e.target.type ==='checkbox' ? e.target.checked:e.target.value
-        const name=e.target.name
+  let navigate = useNavigate();
 
-        setFormData((prevState) => ({
-                   ...prevState,
-                    [name]: value,
-                  }));
-               
-        
-
-    }
+ 
     
  console.log(formData);
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+  
+
     e.preventDefault();
-    console.log('Form data submitted:', formData);
+    try{
+      const response = await axios.put('http://localhost:8000/user', formData)
+    
+
+      console.log(response) 
+      const success = response.status === 200
+
+      if(success) navigate('/dashboard')
+    } catch(err) {
+  console.log(err)
+}
+   
     // Add your form submission logic here
-  };
+ }
+
+  // Handle form field changes
+  const handleChange = (e) => {
+  
+    const value = e.target.type ==='checkbox' ? e.target.checked : e.target.value;
+    const name = e.target.name;
+
+    setFormData((prevState) => ({
+               ...prevState,
+                [name]: value,
+              }));
+           
+    
+
+};
 
   return (
     <>
@@ -78,18 +101,18 @@ const OnBoarding = () => {
                 onChange={handleChange}
               />
               <input
-                id="dobMonth"
+                id="dob_Month"
                 type="number"
-                name="dobMonth"
+                name="dob_Month"
                 placeholder="MM"
                 required
                 value={formData.dob_Month}
                 onChange={handleChange}
               />
               <input
-                id="dobYear"
+                id="dob_Year"
                 type="number"
-                name="dobYear"
+                name="dob_Year"
                 placeholder="YYY"
                 required
                 value={formData.dob_Year}

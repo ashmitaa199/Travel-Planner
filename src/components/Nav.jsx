@@ -12,10 +12,6 @@ const Nav = ({ authToken,setShowModal,showModal,  setIsSignUp}) => {
     setIsSignUp(false);
     // navigate('/login'); // Navigate to the login page
   };
-
- 
-
-
       // minimal=true;
   return (
     <nav className='w-full h-10 '>

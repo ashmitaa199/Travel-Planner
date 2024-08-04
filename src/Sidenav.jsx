@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -9,14 +9,22 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
-
-import LoginIcon from '@mui/icons-material/Login';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import { useCookies } from 'react-cookie';
 
 export default function TemporaryDrawer() {
+
+  const [cookies, , removeCookie] = useCookies(['user']);
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
+
+  const logout = () => {
+    removeCookie('UserId');
+    removeCookie('AuthToken');
+    navigate('/'); // Redirect to home or login page
+    window.location.reload(); // Reload to ensure state is cleared
+  };
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -24,10 +32,7 @@ export default function TemporaryDrawer() {
 
   const icons = {
     Post: <PostAddIcon className="text-white" />,
-    Login: <LoginIcon className="text-white" />,
-    Signup: <PersonAddIcon className="text-white" />,
     Logout: <LogoutIcon className="text-white" />,
-    
   };
 
   const DrawerList = (
@@ -39,14 +44,17 @@ export default function TemporaryDrawer() {
       <List>
         {[
           { text: 'Post', path: '/post' },
-          { text: 'Login', path: '/login' },
-          { text: 'Signup', path: '/signup' },
-          { text: 'Logout', path: '/logout' }
-        ].map(({ text, path }) => (
+          { text: 'Logout', action: logout } // Added action for logout
+        ].map(({ text, path, action }) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton component={Link} to={path} className="hover:bg-blue-600">
+            <ListItemButton
+              component={path ? Link : 'div'} // Render as Link if path is provided, else 'div'
+              to={path}
+              onClick={action} // Call action if provided
+              className="hover:bg-blue-600"
+            >
               <ListItemIcon>
-              {icons[text]}
+                {icons[text]}
               </ListItemIcon>
               <ListItemText primary={text} primaryTypographyProps={{ className: 'text-white' }} />
             </ListItemButton>
@@ -54,13 +62,11 @@ export default function TemporaryDrawer() {
         ))}
       </List>
       <Divider className="bg-white" />
-      
     </Box>
   );
 
   return (
     <div>
-     
       <MenuIcon
         onClick={toggleDrawer(true)}
         className="text-3xl cursor-pointer"

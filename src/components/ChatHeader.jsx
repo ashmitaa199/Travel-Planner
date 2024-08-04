@@ -1,24 +1,23 @@
-import React from 'react'
+import React from 'react';
+import { useCookies } from 'react-cookie';
 
-const ChatHeader = () => {
+const ChatHeader = ({ user }) => {
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+
+  const userImageUrl = user?.url || 'default-profile-pic-url'; // Replace with a default image URL
+  const userName = user?.first_name || 'Guest';
+
   return (
-    <div className='chat-container-header '>
-        <div className='profile '>
-
-    
-            <div className='img-container'>
-                <img src=''/>
-
-            </div>
-            <h3>UserName</h3>
-
+    <div className='chat-container-header'>
+      <div className='profile'>
+        <div className='img-container'>
+          <img src={userImageUrl} alt={'photo of ' + userName} />
         </div>
-        <i className={'log-out-icon'}></i>
-      
-  
+        <h3>{userName}</h3>
+      </div>
     
     </div>
-  )
-}
+  );
+};
 
 export default ChatHeader;

@@ -41,10 +41,7 @@ const Header = ({ backButton }) => {
         </div>
       )}
 
-     
       <img className=" w-12 h-12 rounded-full" src={icon}/>
-        
-      
 
       <Link to='/chat'>
         <IconButton>

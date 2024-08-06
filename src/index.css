@@ -337,3 +337,23 @@ background: radial-gradient(circle, rgba(174,180,238,1) 47%, rgba(22,133,214,0.6
   background-position: center;
   border: none;
 }
+
+
+.chat-display,
+.matches-display {
+    padding: 20px;
+    height: 60vh;
+    overflow-y: auto;
+}
+
+.img-container {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.img-container img {
+  width: 100%;
+}

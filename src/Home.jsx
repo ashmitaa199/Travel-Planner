@@ -1,21 +1,25 @@
 import React, { useEffect,useState } from 'react'
-import Header from './Header';
-import SwipeButtons from './SwipeButtons';
-import TinderCards from './TinderCards';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './components/Nav';
 import AuthModal from './components/AuthModal';
 import { useNavigate } from 'react-router-dom';
+import { useCookies} from 'react-cookie';
 
 const Home = () => {
 
   const [showModal, setShowModal]=useState(false)
   const [isSignUp, setIsSignUp] = useState(true)
-  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies(['user'])
 
-  const authToken = false;
+  const authToken = cookies.AuthToken;
 
   const handleClick =()=>{
+    if (authToken) {
+      removeCookie('UserId', cookies.UserId)
+      removeCookie('AuthToken', cookies.AuthToken)
+      window.location.reload()
+      return
+  }
     
     setShowModal(true);
     setIsSignUp(true)
@@ -44,11 +48,7 @@ const Home = () => {
        (
          <AuthModal setShowModal={setShowModal} isSignUp={isSignUp}/>
       )}
-      {/* <Signup/> */}
-            {/* <Header/>
-           <TinderCards />
-           <SwipeButtons /> */}
-        
+      
     </div>
     </div>
   )

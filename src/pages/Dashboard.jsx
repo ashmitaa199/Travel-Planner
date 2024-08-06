@@ -7,8 +7,8 @@ import axios from 'axios';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
+  const [genderedUsers, setGenderedUsers] = useState([]);
   const [cookies] = useCookies(['user']);
-  
   const userId = cookies.UserId;
 
   // Fetch user data
@@ -23,25 +23,40 @@ const Dashboard = () => {
     }
   };
 
-  // Fetch user data on component mount
-  useEffect(() => {
-    if (userId) {
-      getUser();
-    } else {
-      console.error('User ID not found in cookies');
+  const getGenderedUsers = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/gendered-users', {
+        params: { gender: user?.gender_interest === 'everyone' ? null : user?.gender_interest }
+      });
+      setGenderedUsers(response.data);
+    } catch (error) {
+      console.log(error);
     }
-  }, [userId]);
+  };
 
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      getGenderedUsers();
+    }
+  }, [user]);
+
+  console.log('user', user);
+  console.log('gendered users', genderedUsers);
+  
   return (
     <>
       {user ? (
         <div>
           <Header />
-          <TinderCards />
+          <TinderCards genderedUsers={genderedUsers} user={user} />
           <SwipeButtons />
         </div>
       ) : (
-        <div>Loading...</div> // Or a more sophisticated loading state
+        <div>Loading...</div>
       )}
     </>
   );

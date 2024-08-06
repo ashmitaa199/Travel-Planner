@@ -1,26 +1,28 @@
-import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import ChatHeader from './components/ChatHeader';
 import MatchesDisplay from './components/MatchesDisplay';
 import ChatDisplay from './components/ChatDisplay';
+import Chatt from './components/Chatt';
 
 const Chat = ({ user }) => {
-  // Check if user is null or undefined and provide default handling
+
+const [clickedUser, setClickedUser] =useState(null)
+// console.log('clickedUser', clickedUser)
+
   if (!user) {
-    return <div>Loading...</div>; // Or a more sophisticated loading state
+    return <div>Loading...</div>; // loading state
   }
 
   return (
     <div className='chat-container'>
       <ChatHeader user={user} />
       <div>
-        <button className='option'>Matches</button>
-        <button className='option'>Chat</button>
+        <button className='option' onClick={() => setClickedUser(null)}>Matches</button>
+        <button className='option' disabled={!clickedUser}>Chat</button>
       </div>
       <section>
-        <MatchesDisplay />
-        <ChatDisplay />
+       {!clickedUser && <MatchesDisplay matches={user.matches} setClickedUser={setClickedUser}/>}
+       {clickedUser && <ChatDisplay user={user} clickedUser={clickedUser}/>}
       </section>
     </div>
   );

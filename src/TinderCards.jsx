@@ -1,78 +1,68 @@
 import React, { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
+import TinderCard from 'react-tinder-card';
+import axios from 'axios';
 
+function TinderCards({ genderedUsers, user }) {
+  const [lastDirection, setLastDirection] = useState(null);
+  const [cookies] = useCookies(['user']);
+  const userId = cookies.UserId;
 
-import TinderCard from "react-tinder-card";
-
-
-
-function TinderCards() {
-
-  const characters = [
-    {
-      name: 'Richard Hendricks',
-      url: 'https://i.imgur.com/oPj4A8u.jpeg'
-    },
-    {
-      name: 'Erlich Bachman',
-      url: 'https://i.imgur.com/oPj4A8u.jpeg'
-    },
-    {
-      name: 'Monica Hall',
-      url: 'https://i.imgur.com/oPj4A8u.jpeg'
-    },
-    {
-      name: 'Jared Dunn',
-      url: 'https://i.imgur.com/oPj4A8u.jpeg'
-    },
-    {
-      name: 'Dinesh Chugtai',
-      url: 'https://i.imgur.com/oPj4A8u.jpeg'
+  const updateMatches = async (matchedUserId) => {
+    try {
+      await axios.put('http://localhost:8000/addmatch', {
+        userId,
+        matchedUserId
+      });
+    } catch (error) {
+      console.log(error);
     }
-  ]
+  };
 
+  const swiped = (direction, swipedUserId) => {
+    if (direction === 'right') {
+      updateMatches(swipedUserId);
+    }
+    setLastDirection(direction);
+  };
 
-     //new
-   const [LastDirection,setLastDirection]=useState()
-   const swiped = (direction, nameToDelete) => {
-    console.log('removing:' + nameToDelete)
-    setLastDirection(direction)
-   
-   
-}
+  const outOfFrame = (name) => {
+    console.log(name + ' left the screen!');
+  };
 
-const outOfFrame = (name) => {
-    console.log(name + ' left the screen!')
-}
-   const [genderedUsers, setGenderedUsers] = useState(null)
-    
-  
+  const matchedUserIds = user?.matches.map(({ user_id }) => user_id).concat(userId) || [];
+
+  const filteredGenderedUsers = genderedUsers?.filter(
+    genderedUser => !matchedUserIds.includes(genderedUser.user_id)
+  );
+
   return (
+    <>{user && 
     <div className='-mt-4'>
-   
-      <div className='card-container flex justify-center mt-[5vh]  h-[500px]'>
-
-      
-      {characters.map((character) =>(
-        <TinderCard
-         className="swipe absolute"
-         key={character.name}
-         preventSwipe={["up","down"]}
-         onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
-            <div 
-            style={{backgroundImage:'url(' + character.url + ')'}}
-            className='card'>
-                <h3 className='absolute bottom-5 text-#000000'>{character.name}</h3>
-
+      <div className='card-container flex justify-center mt-[5vh] h-[500px]'>
+        {filteredGenderedUsers?.map((genderedUser) => (
+          <TinderCard
+            className='swipe absolute'
+            key={genderedUser.user_id}
+            preventSwipe={['up', 'down']}
+            onSwipe={(dir) => swiped(dir, genderedUser.user_id)}
+            onCardLeftScreen={() => outOfFrame(genderedUser.first_name)}
+          >
+            <div
+              style={{ backgroundImage: 'url(' + genderedUser.url + ')' }}
+              className='card'
+            >
+              <h3 className='absolute bottom-5 text-black'>{genderedUser.first_name}</h3>
             </div>
-            <div className='swipe-info mt-4'> {LastDirection ? <p>You swiped {LastDirection}</p> : <p/>}
+          </TinderCard>
+        ))}
       </div>
-        </TinderCard>
-        
-      ))}
-      
+      <div className='swipe-info mt-4'>
+        {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
       </div>
-      
     </div>
+    }
+    </>
   );
 }
 

@@ -1,55 +1,37 @@
 import React from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 
-const ChatInput = () => {
-    const [textArea,setTextArea]=useState('');
+const ChatInput = ({ user, clickedUser, getUserMessages, getClickedUsersMessages }) => {
+  const [textArea, setTextArea] = useState("")
+  const userId = user?.user_id
+  const clickedUserId = clickedUser?.user_id
+
+  const addMessage = async () => {
+      const message = {
+          timestamp: new Date().toISOString(),
+          from_userId: userId,
+          to_userId: clickedUserId,
+          message: textArea
+      }
+
+      try {
+          await axios.post('http://localhost:8000/message', { message })
+          getUserMessages()
+          getClickedUsersMessages()
+          setTextArea("")
+      } catch (error) {
+          console.log(error)
+      }
+  }
+
+
   return (
-    <div className='chat-input'>
-        <textarea className=" border" value={textArea} onChange={(e) => setTextArea(e.target.value)}/>
-        <button className='secondary-button'>SUBMIT</button>
-      
-    </div>
+      <div className="chat-input bg-purple-200 w-4/5">
+          <textarea className='border' value={textArea} onChange={(e) => setTextArea(e.target.value)}/>
+          <button className="secondary-button" onClick={addMessage}>Submit</button>
+      </div>
   )
 }
-
 export default ChatInput
-
-// import React, { useState } from 'react';
-
-// const ChatInput = () => {
-//   // Initialize state with an empty string
-//   const [textArea, setTextArea] = useState('');
-
-//   const handleChange = (e) => {
-//     setTextArea(e.target.value);
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // Handle the submit action here, e.g., sending the message
-//     console.log('Message submitted:', textArea);
-//     setTextArea(''); // Clear the textarea after submission
-//   };
-
-//   return (
-//     <div className='chat-input'>
-//       <form onSubmit={handleSubmit}>
-//         <textarea
-//           className="border"
-//           value={textArea} // Ensure value is always a string
-//           onChange={handleChange}
-//           placeholder="Type your message here..."
-//         />
-//         <button
-//           type="submit"
-//           className='secondary-button'
-//         >
-//           SUBMIT
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default ChatInput;
 

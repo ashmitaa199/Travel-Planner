@@ -14,16 +14,16 @@ const [clickedUser, setClickedUser] =useState(null)
   }
 
   return (
-    <div className='chat-container'>
+    <div className='chat-container w-full h-screen overflow-x-hidden m-0 p-0 bg-gradient-to-r from-slate-200 to-cyan-100'>
       <ChatHeader user={user} />
       <div>
         <button className='option' onClick={() => setClickedUser(null)}>Matches</button>
         <button className='option' disabled={!clickedUser}>Chat</button>
       </div>
-      <section>
+      <div className='w-full h-screen overflow-x-hidden m-0 p-0'>
        {!clickedUser && <MatchesDisplay matches={user.matches} setClickedUser={setClickedUser}/>}
        {clickedUser && <ChatDisplay user={user} clickedUser={clickedUser}/>}
-      </section>
+      </div>
     </div>
   );
 };

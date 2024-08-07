@@ -43,10 +43,10 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
     };
 
     return (
-        <div className="auth-modal">
+        <div className="auth-modal bg-black bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 border border-gray-100">
             <div className="close-icon" onClick={handleClick}>ⓧ</div>
-            <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
-            <p>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
+            <h2 className='text-white font-bold'>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
+            <p className='italic text-sm'>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"

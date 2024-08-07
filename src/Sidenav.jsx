@@ -31,20 +31,20 @@ export default function TemporaryDrawer() {
   };
 
   const icons = {
-    Post: <PostAddIcon className="text-white" />,
-    Logout: <LogoutIcon className="text-white" />,
+    Post: <PostAddIcon className="text-#161616" />,
+    Logout: <LogoutIcon className="text-#212121" />,
   };
 
   const DrawerList = (
     <Box
-      className="w-64 h-full bg-gradient-to-b from-blue-500 to-purple-700 text-white"
+      className="w-48 h-full bg-gradient-to-r from-gray-400 to-blue-200 "
       role="presentation"
       onClick={toggleDrawer(false)}
     >
       <List>
         {[
           { text: 'Post', path: '/post' },
-          { text: 'Logout', action: logout } // Added action for logout
+          { text: 'Logout', action: logout } 
         ].map(({ text, path, action }) => (
           <ListItem key={text} disablePadding>
             <ListItemButton
@@ -56,7 +56,7 @@ export default function TemporaryDrawer() {
               <ListItemIcon>
                 {icons[text]}
               </ListItemIcon>
-              <ListItemText primary={text} primaryTypographyProps={{ className: 'text-white' }} />
+              <ListItemText primary={text} primaryTypographyProps={{ className: 'text-#353131' }} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -70,6 +70,7 @@ export default function TemporaryDrawer() {
       <MenuIcon
         onClick={toggleDrawer(true)}
         className="text-3xl cursor-pointer"
+        style={{ color: 'black' }}
       />
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}

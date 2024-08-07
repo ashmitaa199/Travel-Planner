@@ -62,7 +62,7 @@ const ChatDisplay = ({ user, clickedUser }) => {
   const descendingOrderMessages = messages?.sort((a,b) => a.timestamp.localeCompare(b.timestamp))
 
   return (
-    <div className=' '>
+    <div className='w-full h-screen '>
       <Chatt descendingOrderMessages={descendingOrderMessages} />
      <div className='flex justify-center'>
      <ChatInput 

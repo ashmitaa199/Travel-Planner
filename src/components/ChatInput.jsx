@@ -27,8 +27,10 @@ const ChatInput = ({ user, clickedUser, getUserMessages, getClickedUsersMessages
 
 
   return (
-      <div className="chat-input bg-purple-200 w-4/5">
-          <textarea className='border' value={textArea} onChange={(e) => setTextArea(e.target.value)}/>
+      <div className="chat-input w-4/5 justify-center gap-5 fixed -mt-3">
+          <textarea className='border-2 w-full h-full rounded-md' value={textArea} 
+           placeholder="Type your message..."
+          onChange={(e) => setTextArea(e.target.value)}/>
           <button className="secondary-button" onClick={addMessage}>Submit</button>
       </div>
   )

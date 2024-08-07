@@ -34,7 +34,7 @@ const Nav = ({ authToken,setShowModal,showModal,  setIsSignUp}) => {
 
 {!authToken && (
         <button
-          className="nav-button"
+          className="primary-button border"
           onClick={handleClick}
           disabled={showModal}
         >

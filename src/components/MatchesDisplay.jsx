@@ -37,12 +37,12 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
   // console.log(matchedProfiles)
 
   return (
-    <div className='matches-dispaly'>
+    <div className='matches-dispaly justify-center items-center mt-4 flex flex-col'>
 
       {matchedProfiles?.map((match, _index) => (
         <div
           key={match.user_id}
-          className="match-card flex " 
+          className="match-card flex" 
           onClick={() => setClickedUser(match)}
         >
         
@@ -50,7 +50,7 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
           <div className="img-container">
             <img src={match?.url} alt={match?.first_name + " profile"} />
           </div>
-          <h3>{match?.first_name}</h3>
+          <h3 className='p-2'>{match?.first_name}</h3>
 
           </div>
          

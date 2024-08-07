@@ -9,8 +9,8 @@ import { IconButton } from '@mui/material';
 
 function SwipeButtons() {
   return (
-    <div className='swipeButtons fixed bottom-[0.5vh] flex w-full place-content-evenly'>
-      <IconButton  className="swipeButtons__ReplayIcon size-1 "><ReplayIcon fontSize="medium"/></IconButton>
+    <div className='swipeButtons fixed bottom-[0.5vh] flex justify-center w-5/6 gap-9 lg:ml-14'>
+      <IconButton  className="swipeButtons__ReplayIcon size-1 "><ReplayIcon fontSize="small"/></IconButton>
       <IconButton className='swipeButtons__left size-1'><CloseIcon fontSize="medium"/></IconButton>
       <IconButton className='swipeButtons__star size-1'> <StarRateIcon fontSize="medium"/></IconButton>
       <IconButton className='swipeButtons__right size-1'><FavoriteIcon fontSize="medium"/></IconButton>

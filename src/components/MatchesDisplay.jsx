@@ -37,12 +37,12 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
   // console.log(matchedProfiles)
 
   return (
-    <div className='matches-dispaly justify-center items-center mt-4 flex flex-col'>
+    <div className='matches-dispaly justify-center items-center mt-4 flex flex-col '>
 
       {matchedProfiles?.map((match, _index) => (
         <div
           key={match.user_id}
-          className="match-card flex" 
+          className="match-card flex mb-2 bg-slate-900 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 border rounded-lg border-teal-700" 
           onClick={() => setClickedUser(match)}
         >
         

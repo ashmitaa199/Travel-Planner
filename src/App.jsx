@@ -7,7 +7,9 @@ import Sidenav from './Sidenav';
 import Home from './Home';
 import OnBoarding from './pages/OnBoarding';
 import CreatePost from './pages/CreatePost';
+import DisplayPosts from './pages/DisplayPosts'; 
 import Dashboard from './pages/Dashboard';
+
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
@@ -48,6 +50,7 @@ function App() {
         } />
 
 <Route path="/post" element={<CreatePost />} />
+<Route path="/posts" element={<DisplayPosts />} />  
       </Routes>
     </Router>
   );

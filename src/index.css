@@ -65,8 +65,9 @@ h2 {
       to bottom,
       rgba(0, 0, 0, 0.65) 0%,
       rgba(0, 0, 0, 0) 100%
-  ), url('https://img.freepik.com/free-photo/people-portrait-with-plane-flying-sky_23-2149520423.jpg?w=826&t=st=1722594463~exp=1722595063~hmac=6321967d6c987bfcd91c89c7e8dded5816babc8edada151277137ef6e63788f3');
+  ), url('https://images.pexels.com/photos/207896/pexels-photo-207896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
   background-size: cover; /* Ensure background image covers the container */
+  
 }
 
 .home {

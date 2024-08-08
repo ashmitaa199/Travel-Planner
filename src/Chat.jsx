@@ -14,14 +14,19 @@ const [clickedUser, setClickedUser] =useState(null)
   }
 
   return (
-    <div className='chat-container w-full h-screen overflow-x-hidden m-0 p-0 bg-gradient-to-r from-slate-200 to-cyan-100'>
+    <div className='chat-container w-full h-screen overflow-x-hidden m-0 p-0 '
+    style={{ backgroundImage: "url('https://w0.peakpx.com/wallpaper/818/148/HD-wallpaper-whatsapp-background-cool-dark-green-new-theme-whatsapp.jpg')" }}
+    >
       <ChatHeader user={user} />
-      <div>
-        <button className='option' onClick={() => setClickedUser(null)}>Matches</button>
-        <button className='option' disabled={!clickedUser}>Chat</button>
+      <div className=''>
+        <button className='option ' onClick={() => setClickedUser(null)}>Matches</button>
+        <button className='option ' disabled={!clickedUser}>Chat</button>
       </div>
       <div className='w-full h-screen overflow-x-hidden m-0 p-0'>
-       {!clickedUser && <MatchesDisplay matches={user.matches} setClickedUser={setClickedUser}/>}
+        <div className=''>
+        {!clickedUser && <MatchesDisplay matches={user.matches} setClickedUser={setClickedUser}/>}
+        </div>
+      
        {clickedUser && <ChatDisplay user={user} clickedUser={clickedUser}/>}
       </div>
     </div>

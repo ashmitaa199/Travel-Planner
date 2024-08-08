@@ -8,12 +8,12 @@ const ChatHeader = ({ user }) => {
   const userName = user?.first_name || 'Guest';
 
   return (
-    <div className='chat-container-header'>
+    <div className='chat-container-header fixed'>
       <div className='profile'>
         <div className='img-container'>
           <img src={userImageUrl} alt={'photo of ' + userName} />
         </div>
-        <h3 className='text-black'>{userName}</h3>
+        <h3 className='text-white'>{userName}</h3>
       </div>
     
     </div>

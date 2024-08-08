@@ -44,6 +44,7 @@ export default function TemporaryDrawer() {
       <List>
         {[
           { text: 'Post', path: '/post' },
+          { text: 'DisplayPosts ', path: '/posts' },
           { text: 'Logout', action: logout } 
         ].map(({ text, path, action }) => (
           <ListItem key={text} disablePadding>

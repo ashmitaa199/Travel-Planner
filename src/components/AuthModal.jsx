@@ -44,9 +44,9 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
 
     return (
         <div className="auth-modal bg-black bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 border border-gray-100">
-            <div className="close-icon" onClick={handleClick}>ⓧ</div>
+            <div className="close-icon text-white -mt-6 -mr-3" onClick={handleClick}>ⓧ</div>
             <h2 className='text-white font-bold'>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
-            <p className='italic text-sm'>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
+            <p className='italic text-xs text-slate-200'>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"
@@ -81,8 +81,8 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
                 <input className="secondary-button" type="submit" value={isSignUp ? 'Sign Up' : 'Log In'} />
                 {error && <p className="error-message">{error}</p>}
             </form>
-            <hr />
-            <h2>GET THE APP</h2>
+            <hr className='text-white' />
+            <h2 className='text-teal-400'>GET THE APP</h2>
         </div>
     );
 };

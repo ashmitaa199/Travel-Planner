@@ -16,25 +16,20 @@ const Nav = ({ authToken,setShowModal,showModal,  setIsSignUp}) => {
   return (
     <nav className='w-full h-10 '>
 
-  <div className='flex items-center justify-between'>
+  <div className='flex items-center justify-between p-2'>
     <div className='flex'>
     <div className='w-[70px] h-[40px] p-2 '>
      
      <img  className="w-full rounded" src={travelicon }/>  
    
    </div>
-   <span className=' p-2 mt-2 font-bold text-xl'>travelMate!!!</span>
+   <span className='text-white p-2 mt-2 font-bold text-xl'>travelMate!!!</span>
     </div>
 
-      
-  
-  {/* <div className='p-2'>
-  <button  onClick={handleLoginClick} className='rounded-xl w-20 h-7 bg-white font-bold '>Loginn</button>
-  </div> */}
 
 {!authToken && (
         <button
-          className="primary-button border"
+          className="primary-button border mt-2"
           onClick={handleClick}
           disabled={showModal}
         >

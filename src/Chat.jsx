@@ -14,7 +14,7 @@ const [clickedUser, setClickedUser] =useState(null)
   }
 
   return (
-    <div className='chat-container w-full h-screen overflow-x-hidden m-0 p-0 '
+    <div className='chat-container w-full h-screen overflow-x-hidden '
     style={{ backgroundImage: "url('https://w0.peakpx.com/wallpaper/818/148/HD-wallpaper-whatsapp-background-cool-dark-green-new-theme-whatsapp.jpg')" }}
     >
       <ChatHeader user={user} />
